@@ -19,9 +19,8 @@
 ---
 include:
   - board: seeeduino_xiao_ble
-    shield: mona2_r rgbled_adapter
-    snippet: studio-rpc-usb-uart
+    shield: mona2_r
   - board: seeeduino_xiao_ble
-    shield: mona2_l rgbled_adapter
+    shield: mona2_l
   - board: seeeduino_xiao_ble
     shield: settings_reset
