@@ -101,7 +101,7 @@
 &kp LCTRL         &kp LEFT_WIN  &kp F16  &kp BACKSPACE  &lt 2 ENTER  &lt_to_layer_0 3 LANG2    &lt_to_layer_0 3 LANG1  &lt 1 SPACE                             &studio_unlock
             >;
              sensor-bindings = <&rsr_vol>;
-#            sensor-bindings = <&scroll_up_down>;
+//            sensor-bindings = <&scroll_up_down>;
         };
 
         layer_1 {
@@ -112,7 +112,7 @@
 &trans        &trans        &trans            &trans             &trans        &trans    &trans  &trans                                                                   &trans
             >;
              sensor-bindings = <&rsr_pg>;
-#            sensor-bindings = <&scroll_right_left>;
+//            sensor-bindings = <&scroll_right_left>;
         };
 
         layer_2 {
@@ -134,7 +134,7 @@
 &trans  &trans              &trans                  &trans                   &trans                   &trans    &trans  &trans                                                   &trans
             >;
             sensor-bindings = <&rsr_pg>;
-#            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+//            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         layer_4 {
@@ -145,7 +145,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans       &trans                                                  &bt BT_CLR_ALL
             >;
             sensor-bindings = <&rsr_pg>;
-#            sensor-bindings = <&scroll_up_down>;
+//            sensor-bindings = <&scroll_up_down>;
         };
 
         MOUSE {
@@ -156,9 +156,9 @@
 &trans  &trans    &trans    &trans    &trans  &trans    &trans  &trans                                &trans
             >;
             sensor-bindings = <&rsr_pg>;
-            sensor-bindings = <&scroll_up_down>;
+//            sensor-bindings = <&scroll_up_down>;
         };
-#
+
         SCROLL {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
@@ -167,7 +167,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                          &trans
             >;
             sensor-bindings = <&rsr_pg>;
-#            sensor-bindings = <&scroll_up_down>;
+//            sensor-bindings = <&scroll_up_down>;
         };
     };
 };
