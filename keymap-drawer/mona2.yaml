@@ -42,7 +42,7 @@ layers:
   - {t: '&to_layer_0 LANG2', h: '3'}
   - {t: '&to_layer_0 LANG1', h: '3'}
   - {t: SPACE, h: '1'}
-  - LEFT ALT
+  - '&studio_unlock'
   '1':
   - '1'
   - '2'
