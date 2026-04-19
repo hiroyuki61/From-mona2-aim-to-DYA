@@ -69,7 +69,7 @@
 
             tap-ms = <20>;
         };
-### DYA studio対応で下記追加
+// DYA studio対応で下記追加
         rsr_vol: rsr_vol {
             compatible = "zmk,behavior-runtime-sensor-rotate";
             #sensor-binding-cells = <0>;
@@ -86,7 +86,7 @@
             ccw-binding = <&kp PAGE_DOWN>;
         };
 
-###ここまで
+//ここまで
     };
 
     keymap {
@@ -100,7 +100,7 @@
 &kp LCTRL         &kp LEFT_WIN  &kp F16  &kp BACKSPACE  &lt 2 ENTER  &lt_to_layer_0 3 LANG2    &lt_to_layer_0 3 LANG1  &lt 1 SPACE                             &studio_unlock
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&rsr_vol>;
         };
 
         layer_1 {
