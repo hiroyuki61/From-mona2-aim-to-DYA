@@ -2,7 +2,7 @@ if SHIELD_MONA2_R
 
 config ZMK_KEYBOARD_NAME
     string
-    default "mona2"
+    default "moNa2"
 
 config ZMK_BLE
     bool        # ← これを追加
@@ -41,11 +41,11 @@ config ZMK_SPLIT
     default y
 
 config RGBLED_WIDGET_BATTERY_LEVEL_HIGH
-    int
+    int "Battery High Level"
     default 30
 
 config RGBLED_WIDGET_BATTERY_LEVEL_CRITICAL
-    int
+    int "Battery Critical Level"
     default 10
 
 endif
