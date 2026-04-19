@@ -40,11 +40,9 @@ config ZMK_SPLIT
     default y
 
 config RGBLED_WIDGET_BATTERY_LEVEL_HIGH
-    int         # ← これを追加
     default 30
 
 config RGBLED_WIDGET_BATTERY_LEVEL_CRITICAL
-    int         # ← これを追加
     default 10
 
 endif
