@@ -4,21 +4,27 @@ config ZMK_KEYBOARD_NAME
     default "mona2"
 
 config ZMK_BLE
+    bool        # ← これを追加
     default y
 
 config ZMK_SPLIT_ROLE_CENTRAL
+    bool        # ← これを追加
     default y
 
 config INPUT
+    bool        # ← これを追加
     default y
 
 config ZMK_POINTING
+    bool        # ← これを追加
     default y
 
 config SPI
+    bool        # ← これを追加
     default y
 
 config PMW3610
+    bool        # ← これを追加
     default y
 
 endif
@@ -26,15 +32,19 @@ endif
 if SHIELD_MONA2_R || SHIELD_MONA2_L
 
 config NFCT_PINS_AS_GPIOS
+    bool        # ← これを追加
     default y
 
 config ZMK_SPLIT
+    bool        # ← これを追加
     default y
 
 config RGBLED_WIDGET_BATTERY_LEVEL_HIGH
+    int         # ← これを追加
     default 30
 
 config RGBLED_WIDGET_BATTERY_LEVEL_CRITICAL
+    int         # ← これを追加
     default 10
 
 endif
