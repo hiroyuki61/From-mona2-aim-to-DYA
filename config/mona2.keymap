@@ -3,12 +3,9 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/input_transform.h>
+#include <dt-bindings/zmk/studio_unlock.h>
 
-/* * 警告対策: ZMK_POINTING_DEFAULT_SCRL_VAL は pointing.h で定義済みの場合は 
- * ここで再定義すると警告が出るため、一旦コメントアウトまたは削除します。
- * #define ZMK_POINTING_DEFAULT_SCRL_VAL 100 
- */
-
+/* マウス・スクロールレイヤー番号の定義 */
 #define MOUSE 5
 #define SCROLL 6
 
@@ -25,12 +22,10 @@
 / {
     combos {
         compatible = "zmk,combos";
-
         layer4_ESC {
             bindings = <&lt 4 ESC>;
             key-positions = <39 38>;
         };
-
         tab {
             bindings = <&kp TAB>;
             key-positions = <11 12>;
@@ -69,18 +64,11 @@
             tap-ms = <20>;
         };
 
-        // エンコーダー用の音量調節（標準behaviorに変更）
+        // DYA Studio対応: ランタイム回転
         rsr_vol: rsr_vol {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&kp C_VOL_DN>, <&kp C_VOL_UP>;
-            tap-ms = <20>;
-        };
-
-        rsr_pg: rsr_pg {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&kp PAGE_DOWN>, <&kp PG_UP>;
             tap-ms = <20>;
         };
     };
@@ -93,10 +81,9 @@
 &kp Q             &kp W         &kp E    &kp R          &kp T                                                         &kp Y        &kp U  &kp I      &kp O    &kp P
 &kp A             &kp S         &kp D    &kp F          &kp G                                   &kp F13               &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
 &mt LEFT_SHIFT Z  &kp X         &kp C    &kp V          &kp B        &kp F14                    &kp F15               &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp F16  &kp BACKSPACE  &lt 2 ENTER  &lt_to_layer_0 3 LANG2    &lt_to_layer_0 3 LANG1  &lt 1 SPACE                       &none
+&kp LCTRL         &kp LEFT_WIN  &kp F16  &kp BACKSPACE  &lt 2 ENTER  &lt_to_layer_0 3 LANG2    &lt_to_layer_0 3 LANG1  &lt 1 SPACE                       &studio_unlock
             >;
-            // 右手ビルド時はエンコーダーがないため一時的にコメントアウト推奨
-            // sensor-bindings = <&rsr_vol>;
+            sensor-bindings = <&rsr_vol>;
         };
 
         layer_1 {
@@ -146,4 +133,17 @@
 &trans  &trans    &trans    &trans    &trans  &trans    &trans  &trans  &trans    &trans    &trans    &trans
 &trans  &trans    &trans    &trans    &trans  &trans    &trans  &trans                                &trans
             >;
-            sensor-bindings =
+            sensor-bindings = <&scroll_up_down>;
+        };
+
+        SCROLL {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                          &trans
+            >;
+            sensor-bindings = <&scroll_up_down>;
+        };
+    };
+};
