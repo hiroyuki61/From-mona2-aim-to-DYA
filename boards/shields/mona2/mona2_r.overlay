@@ -1,6 +1,8 @@
 #include "mona2.dtsi"
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <input/processors/runtime-input-processor.dtsi>
+#include <behaviors/battery_history_request.dtsi>
 
 
 &default_transform {
@@ -37,7 +39,7 @@
     };
 };
 
-
+/*
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim"; //マイコンがnRFシリーズ
@@ -61,7 +63,7 @@
         y-input-code = <INPUT_REL_Y>;
     };
 };
-
+*/
 
 // Overrides for the input listener node
 &trackball_central_listener {
