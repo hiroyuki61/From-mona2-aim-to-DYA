@@ -1,3 +1,5 @@
+name: Build
+
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
@@ -7,6 +9,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Cache west modules
         uses: actions/cache@v4
         env:
@@ -23,24 +26,41 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
+      - name: Install Zephyr SDK
+        run: |
+          wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64.tar.xz
+          tar xvf zephyr-sdk-0.16.1_linux-x86_64.tar.xz
+          cd zephyr-sdk-0.16.1 && ./setup.sh -t arm-zephyr-eabi -c
+
       - name: Install West
         run: pip3 install west
+
       - name: West Init
         run: west init -l config
+
       - name: West Update
         run: west update
+
       - name: West Zephyr export
         run: west zephyr-export
+
       - name: West Build (Left)
-        # 修正ポイント：-DZMK_EXTRA_MODULES 以下の記述を追加
-        run: west build -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_l -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
+        run: |
+          export ZEPHYR_SDK_INSTALL_DIR=$GITHUB_WORKSPACE/zephyr-sdk-0.16.1
+          west build -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_l -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
+
       - name: mona2_l Kconfig file copy
         run: cp build/zephyr/.config mona2_l.config
+
       - name: West Build (Right)
-        # 修正ポイント：ここにも追加。さらに -p (pristine) を入れてクリーンビルドを確実に
-        run: west build -p -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_r -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
+        run: |
+          export ZEPHYR_SDK_INSTALL_DIR=$GITHUB_WORKSPACE/zephyr-sdk-0.16.1
+          west build -p -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_r -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
+
       - name: mona2_r Kconfig file copy
         run: cp build/zephyr/.config mona2_r.config
+
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
