@@ -36,25 +36,6 @@
     };
 };
 
-/ {
-    trackball_central_listener: trackball_central_listener {
-        compatible = "zmk,input-listener";
-        status = "okay";
-        device = <&trackball_central>;
-        input-processors = <&mouse_runtime_input_processor>;
-
-        scroller {
-            layers = <3>;
-            input-processors = 
-                <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
-                <&zip_xy_to_scroll_mapper>,
-                <&scroll_runtime_input_processor>,
-                <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
-                <&zip_scroll_scaler 1 5>;
-        };
-    };
-};
-
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
@@ -75,3 +56,23 @@
         y-input-code = <INPUT_REL_Y>;
     };
 };
+
+/ {
+    trackball_central_listener: trackball_central_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&trackball_central>;
+        input-processors = <&mouse_runtime_input_processor>;
+
+        scroller {
+            layers = <3>;
+            input-processors = 
+                <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
+                <&zip_xy_to_scroll_mapper>,
+                <&scroll_runtime_input_processor>,
+                <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
+                <&zip_scroll_scaler 1 5>;
+        };
+    };
+};
+
