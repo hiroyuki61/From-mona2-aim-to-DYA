@@ -26,7 +26,6 @@
                 <NRF_PSEL(SPIM_MISO, 0, 4)>;
         };
     };
-
     spi0_sleep: spi0_sleep {
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
@@ -58,16 +57,18 @@
     };
 };
 
-// Overrides for the input listener node
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
+    // デフォルト動作: DYA Studioからトラックボール設定を変更可能にする（必須）
+    input-processors = <&mouse_runtime_input_processor>;
 
     scroller {
         layers = <3>;
         input-processors = 
             <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_xy_to_scroll_mapper>,
+            <&scroll_runtime_input_processor>,
             <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
             <&zip_scroll_scaler 1 5>;
     };
