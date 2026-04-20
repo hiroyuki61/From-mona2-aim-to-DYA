@@ -40,7 +40,7 @@ layers:
   - {t: SPACE, h: symbol}
   - {t: SPACE, h: function}
   - {t: Ctl+SPACE, h: LCTRL}
-  - '&bspc_main'
+  - {t: BSPC, h: LSHFT}
   - {t: ENTER, h: num}
   - ''
   num:
@@ -76,7 +76,7 @@ layers:
   - '='
   - +
   - '['
-  - '0x87'
+  - INT1
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -95,7 +95,7 @@ layers:
   - ^
   - ']'
   - \
-  - '0x87'
+  - INT1
   - '%'
   - Ctl+A
   - '&mkp MB3'
@@ -103,9 +103,9 @@ layers:
   - '&mkp MB1'
   - '&'
   - {t: ▽, type: trans}
-  - Sft+0x89
+  - Sft+INT3
   - '*'
-  - UP ARROW
+  - UP
   - (
   - JP HASH
   - {t: Ctl+Z, h: LSHFT}
@@ -116,9 +116,9 @@ layers:
   - '&bootloader'
   - '&bracket_pair'
   - +
-  - LEFT ARROW
-  - DOWN ARROW
-  - RIGHT ARROW
+  - LEFT
+  - DOWN
+  - RIGHT
   - Sft+JP SLASH
   - LCTRL
   - {t: ▽, type: trans}
@@ -137,7 +137,7 @@ layers:
   - Ctl+G
   - {t: ▽, type: trans}
   - HOME
-  - UP ARROW
+  - UP
   - END
   - ''
   - Ctl+A
@@ -148,7 +148,7 @@ layers:
   - {t: ▽, type: trans}
   - BSPC
   - {t: ▽, type: trans}
-  - UP ARROW
+  - UP
   - {t: ▽, type: trans}
   - ''
   - Ctl+Z
@@ -159,9 +159,9 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - DEL
-  - LEFT ARROW
-  - DOWN ARROW
-  - RIGHT ARROW
+  - LEFT
+  - DOWN
+  - RIGHT
   - {type: held}
   - LCTRL
   - LSHFT
