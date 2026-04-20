@@ -6,20 +6,7 @@ jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3.0
     with:
-      # build_matrix を手動で定義し、DYAモジュールを外部から注入します
-      build_matrix: |
-        [
-          {
-            "board": "seeeduino_xiao_ble",
-            "shield": "mona2_l",
-            "snippet": "studio",
-            "cmake_args": "-DZMK_EXTRA_MODULES='/__w/From-mona2-aim-to-DYA/From-mona2-aim-to-DYA'"
-          },
-          {
-            "board": "seeeduino_xiao_ble",
-            "shield": "mona2_r",
-            "snippet": "studio",
-            "cmake_args": "-DZMK_EXTRA_MODULES='/__w/From-mona2-aim-to-DYA/From-mona2-aim-to-DYA'"
-          }
-        ]
       config_path: "config"
+
+# build.yml（ルートに置くファイル）は上記のみ。
+# 実際のビルド定義は config/build.yaml に書く（下記参照）
