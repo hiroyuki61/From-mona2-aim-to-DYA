@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          path: config  # 自分のリポジトリを 'config' フォルダにチェックアウト
+        # path: config を削除し、ルートに展開させます
 
       - name: West Init
-        run: west init -l config
+        # 現在のディレクトリ(.)にある west.yml を使って初期化します
+        run: west init -l .
 
       - name: West Update
         run: west update
@@ -24,14 +24,14 @@ jobs:
         run: west zephyr-export
 
       - name: West Build (Left)
-        # 各パスを config/ から始まる形に修正
-        run: west build -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_l -DZMK_CONFIG="${GITHUB_WORKSPACE}/config/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}/config"
+        # 各パスを今の構造（ルート直下）に合わせます
+        run: west build -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_l -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
 
       - name: mona2_l Kconfig file copy
         run: cp build/zephyr/.config mona2_l.config
 
       - name: West Build (Right)
-        run: west build -p -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_r -DZMK_CONFIG="${GITHUB_WORKSPACE}/config/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}/config"
+        run: west build -p -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_r -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
 
       - name: mona2_r Kconfig file copy
         run: cp build/zephyr/.config mona2_r.config
