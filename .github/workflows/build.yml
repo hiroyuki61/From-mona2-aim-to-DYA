@@ -4,42 +4,22 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container:
-      image: zmkfirmware/zmk-build-arm:stable
-    name: Build Test
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: West Init
-        # configフォルダの中にある west.yml を指定します
-        run: west init -l config
-
-      - name: West Update
-        run: west update
-
-      - name: West Zephyr export
-        run: west zephyr-export
-
-      - name: West Build (Left)
-        # ZMK_CONFIG と ZMK_EXTRA_MODULES のパスも今の構造に合わせます
-        run: west build -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_l -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
-
-      - name: mona2_l Kconfig file copy
-        run: cp build/zephyr/.config mona2_l.config
-
-      - name: West Build (Right)
-        run: west build -p -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_r -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
-
-      - name: mona2_r Kconfig file copy
-        run: cp build/zephyr/.config mona2_r.config
-
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: mona2_firmware
-          path: |
-            build/zephyr/zmk.uf2
-            mona2_l.config
-            mona2_r.config
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3.0
+    with:
+      # build_matrix を手動で定義し、DYAモジュールを外部から注入します
+      build_matrix: |
+        [
+          {
+            "board": "seeeduino_xiao_ble",
+            "shield": "mona2_l",
+            "snippet": "studio",
+            "cmake_args": "-DZMK_EXTRA_MODULES='/__w/From-mona2-aim-to-DYA/From-mona2-aim-to-DYA'"
+          },
+          {
+            "board": "seeeduino_xiao_ble",
+            "shield": "mona2_r",
+            "snippet": "studio",
+            "cmake_args": "-DZMK_EXTRA_MODULES='/__w/From-mona2-aim-to-DYA/From-mona2-aim-to-DYA'"
+          }
+        ]
+      config_path: "config"
