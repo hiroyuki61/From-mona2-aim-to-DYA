@@ -105,7 +105,7 @@ layers:
   - {t: ▽, type: trans}
   - Sft+INT3
   - '*'
-  - UP
+  - UP ARROW
   - (
   - JP HASH
   - {t: Ctl+Z, h: LSHFT}
@@ -116,9 +116,9 @@ layers:
   - '&bootloader'
   - '&bracket_pair'
   - +
-  - LEFT
-  - DOWN
-  - RIGHT
+  - LEFT ARROW
+  - DOWN ARROW
+  - RIGHT ARROW
   - Sft+JP SLASH
   - LCTRL
   - {t: ▽, type: trans}
@@ -137,7 +137,7 @@ layers:
   - Ctl+G
   - {t: ▽, type: trans}
   - HOME
-  - UP
+  - UP ARROW
   - END
   - ''
   - Ctl+A
@@ -148,7 +148,7 @@ layers:
   - {t: ▽, type: trans}
   - BSPC
   - {t: ▽, type: trans}
-  - UP
+  - UP ARROW
   - {t: ▽, type: trans}
   - ''
   - Ctl+Z
@@ -159,9 +159,9 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - DEL
-  - LEFT
-  - DOWN
-  - RIGHT
+  - LEFT ARROW
+  - DOWN ARROW
+  - RIGHT ARROW
   - {type: held}
   - LCTRL
   - LSHFT
