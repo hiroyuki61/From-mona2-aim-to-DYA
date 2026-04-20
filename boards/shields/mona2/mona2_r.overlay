@@ -57,19 +57,21 @@
     };
 };
 
-&trackball_central_listener {
-    status = "okay";
-    device = <&trackball_central>;
-    // デフォルト動作: DYA Studioからトラックボール設定を変更可能にする（必須）
-    input-processors = <&mouse_runtime_input_processor>;
+/ {
+    trackball_central_listener: trackball_central_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&trackball_central>;
+        input-processors = <&mouse_runtime_input_processor>;
 
-    scroller {
-        layers = <3>;
-        input-processors = 
-            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
-            <&zip_xy_to_scroll_mapper>,
-            <&scroll_runtime_input_processor>,
-            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
-            <&zip_scroll_scaler 1 5>;
+        scroller {
+            layers = <3>;
+            input-processors = 
+                <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
+                <&zip_xy_to_scroll_mapper>,
+                <&scroll_runtime_input_processor>,
+                <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
+                <&zip_scroll_scaler 1 5>;
+        };
     };
 };
