@@ -136,9 +136,9 @@
         default_layer {
             bindings = <
 &kp Q             &kp W             &kp E            &kp R          &kp T                                                         &kp Y        &kp U  &kp I      &kp O    &kp P
-&kp A             &kp S             &kp D            &kp F          &kp G                          &lt L_FUNCTION JP_COLON        &kp H        &kp J  &kp K      &kp L    &lt L_SCROLL MINUS
-&mt LEFT_SHIFT Z  &kp X             &kp C            &kp V          &kp B        &mkp LCLK                    &paren_pair               &kp N        &kp M  &kp COMMA  &kp DOT  &lt L_ARROW SLASH
-&lt L_ARROW LG(LS(LEFT_ARROW))      &kp LEFT_GUI     &kp LEFT_ALT    &lt L_ARROW F10       &lt L_SCROLL SPACE           &mt LEFT_CONTROL LC(SPACE)  &bspc_main   &lt L_NUM ENTER                                                                       &kp PRINTSCREEN
+&kp A             &kp S             &kp D            &kp F          &kp G                          &lt FUNCTION JP_COLON        &kp H        &kp J  &kp K      &kp L    &lt SCROLL MINUS
+&mt LEFT_SHIFT Z  &kp X             &kp C            &kp V          &kp B        &mkp LCLK                    &paren_pair               &kp N        &kp M  &kp COMMA  &kp DOT  &lt ARROW SLASH
+&lt ARROW LG(LS(LEFT_ARROW))      &kp LEFT_GUI     &kp LEFT_ALT    &lt ARROW F10       &lt SCROLL SPACE           &mt LEFT_CONTROL LC(SPACE)  &bspc_main   &lt NUM ENTER                                                                       &kp PRINTSCREEN
             >;
             sensor-bindings = <&rsr_vol>;
         };
