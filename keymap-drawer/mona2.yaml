@@ -42,7 +42,7 @@ layers:
   - {t: Ctl+SPACE, h: LCTRL}
   - '&bspc_main'
   - {t: ENTER, h: num}
-  - '&studio_unlock'
+  - ''
   num:
   - F1
   - F2
@@ -76,7 +76,7 @@ layers:
   - '='
   - +
   - '['
-  - INT1
+  - '0x87'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -95,7 +95,7 @@ layers:
   - ^
   - ']'
   - \
-  - INT1
+  - '0x87'
   - '%'
   - Ctl+A
   - '&mkp MB3'
@@ -103,7 +103,7 @@ layers:
   - '&mkp MB1'
   - '&'
   - {t: ▽, type: trans}
-  - Sft+INT3
+  - Sft+0x89
   - '*'
   - UP ARROW
   - (
