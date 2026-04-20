@@ -62,7 +62,10 @@
         compatible = "zmk,input-listener";
         status = "okay";
         device = <&trackball_central>;
-        input-processors = <&mouse_runtime_input_processor>;
+        input-processors =
+            <&mouse_runtime_input_processor>,
+            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>;  // ← Y軸反転を追加
+
 
         scroller {
             layers = <3>;
