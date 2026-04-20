@@ -5,36 +5,12 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
     name: Build Test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Cache west modules
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-zephyr-modules
-        with:
-          path: |
-            modules/
-            tools/
-            zephyr/
-            bootloader/
-            zmk/
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/west.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: Install Zephyr SDK
-        run: |
-          wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64.tar.xz
-          tar xvf zephyr-sdk-0.16.1_linux-x86_64.tar.xz
-          cd zephyr-sdk-0.16.1 && ./setup.sh -t arm-zephyr-eabi -c
-
-      - name: Install West
-        run: pip3 install west
 
       - name: West Init
         run: west init -l config
@@ -46,17 +22,13 @@ jobs:
         run: west zephyr-export
 
       - name: West Build (Left)
-        run: |
-          export ZEPHYR_SDK_INSTALL_DIR=$GITHUB_WORKSPACE/zephyr-sdk-0.16.1
-          west build -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_l -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
+        run: west build -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_l -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
 
       - name: mona2_l Kconfig file copy
         run: cp build/zephyr/.config mona2_l.config
 
       - name: West Build (Right)
-        run: |
-          export ZEPHYR_SDK_INSTALL_DIR=$GITHUB_WORKSPACE/zephyr-sdk-0.16.1
-          west build -p -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_r -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
+        run: west build -p -s zmk/app -b seeeduino_xiao_ble -- -DSHIELD=mona2_r -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}"
 
       - name: mona2_r Kconfig file copy
         run: cp build/zephyr/.config mona2_r.config
