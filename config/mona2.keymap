@@ -54,8 +54,6 @@
         esc { bindings = <&kp ESC>; key-positions = <0 1>; };
         double_quotation { bindings = <&kp DOUBLE_QUOTES>; key-positions = <20 21>; };
         eq { bindings = <&kp EQUAL>; key-positions = <24 25>; };
-        alt_tab { bindings = <&app_switch>; key-positions = <11 36>; };
-        win_tab { bindings = <&task_switch>; key-positions = <10 36>; };
     };
 
     macros {
@@ -156,7 +154,7 @@
             sensor-bindings = <&rsr_vol>;
         };
 
-        layer_1 {
+        L_1 {
             bindings = <
 &kp F1                      &kp F2           &kp F3           &kp F4           &kp F5                                                      &kp F6        &kp F7             &kp F8          &kp F9           &kp F10
 &kp NUMBER_1      &kp NUMBER_2     &kp NUMBER_3     &kp NUMBER_4     &kp NUMBER_5    &kp LC(LA(KP_NUMBER_0))      &kp JP_YEN  &kp NUMBER_6  &kp NUMBER_7       &kp NUMBER_8    &kp NUMBER_9     &kp NUMBER_0
@@ -166,7 +164,7 @@
             sensor-bindings = <&scroll_right_left>;
         };
 
-        layer_2 {
+        L_2 {
             bindings = <
 &kp ESC                &mkp MB4        &mkp MB5          &kp LC(F)      &kp LC(G)                                     &kp JP_AMPERSAND  &kp JP_LBRACKET  &kp JP_RBRACKET  &kp JP_UNDERSCORE  &kp PERCENT
 &kp LC(A)              &mkp MCLK       &mkp RCLK         &mkp LCLK      &kp JP_QUOTE    &trans      &kp SEMICOLON     &kp JP_PIPE       &kp JP_LPAREN    &kp UP_ARROW     &kp JP_RPAREN       &kp HASH
@@ -176,7 +174,7 @@
             sensor-bindings = <&scroll_up_down>;
         };
 
-        layer_3 {
+        L_3 {
             bindings = <
 &kp ESC           &mkp MB4     &mkp MB5     &kp LC(F)   &kp LC(G)                               &trans         &kp HOME         &kp UP_ARROW     &kp END           &none
 &kp LC(A)         &mkp MCLK    &mkp RCLK    &mkp LCLK   &kp LA(F5)  &trans      &trans        &kp BSPC  &trans           &kp UP_ARROW     &trans   &none
@@ -186,7 +184,7 @@
             sensor-bindings = <&rsr_vol>;
         };
 
-        layer_4 {
+        L_4 {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                         &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
 &trans  &trans  &trans  &trans  &trans                &trans   &trans        &trans        &trans        &trans        &trans
